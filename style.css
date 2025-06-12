@@ -126,6 +126,14 @@ select {
 
 
 
+#workExperienceOutput,
+#educationOutput,
+#certificationOutput {
+  height: auto;
+  max-height: none;
+  overflow-y: visible;
+  transition: all 0.3s ease-in-out;
+}
 
 
 

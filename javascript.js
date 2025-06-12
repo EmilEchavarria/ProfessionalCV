@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const skillText = `${skill.value} (${skillLevel}/5)`; // <-- Aquí el cambio
 
         const skillItem = document.createElement("li");
-        skillItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
+        skillItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
         skillItem.textContent = skillText;
 
         skillsOutput.appendChild(skillItem);
@@ -495,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const softText = `${soft.value} (${softLevel}/5)`; // <-- Aquí el cambio
 
         const softItem = document.createElement("li");
-        softItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
+        softItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
         softItem.textContent = softText;
 
         softwareOutput.appendChild(softItem);
@@ -519,7 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const langText = `${lang.value} (${langLevel}/5)`; // <-- Aquí el cambio
 
         const langItem = document.createElement("li");
-        langItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
+        langItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
         langItem.textContent = langText;
 
         languagesOutput.appendChild(langItem);
@@ -632,7 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Validación del formulario antes de generar el CV*/
+/* Validación del formulario antes de generar el CV
 
 document.getElementById("BtnCvGenerate").addEventListener("click", function () {
   const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
@@ -650,3 +650,4 @@ document.getElementById("BtnCvGenerate").addEventListener("click", function () {
     // Generar el CV aquí
   }
 });
+*/
