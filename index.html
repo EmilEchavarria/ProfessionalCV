@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de CV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+</head>
+
+<body class="text-gray-800 font-sans">
+<main> 
+  <!-- Pantalla de bienvenida  -->
+  <div id="intro" class="fixed inset-0 flex items-center justify-center bg-[#243a69]  text-[#3a89c9] text-7xl font-semibold transition-opacity duration-1000 z-50">
+  ProfessionalCV
+</div> 
+
+  <!-- Contenido principal (oculto al principio) -->
+  <div id="mainContent" class="hidden">
+    <div class="p-8">
+      <h1 class="text-3xl font-semibold text-gray-800">Bienvenido a la App</h1>
+      <p class="mt-4 text-gray-600">Aquí va el contenido principal...</p>
+    </div>
+
+
+  </div>
+  <div class="max-w-7xl mx-auto p-8  shadow-lg mt-10 rounded-lg container">
+    <header class="text-center mb-6">
+      <h1 class="text-5xl font-bold text-[#3a89c9]">ProfessionalCV</h1>
+      <p class="text-lg ">Genera tu curriculum vitae de manera autoamatica!</p>
+    </header>
+
+    <section class="mb-6 personal-info">
+      <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 text-left">Información Personal</h2>
+    
+      <label for="profileImage" class="mt-2">Imagen</label>
+      <input type="file" id="profileImage" accept="image/*" class="mt-2 p-2 border border-gray-300 rounded w-full"/>
+
+      <label for="name" class="mt-2">Nombre</label>
+      <input type="text" id="name"  placeholder="Nombre Completo" class="mt-2 p-2 border border-gray-300 rounded w-full"/>
+
+      <label for="title" class="mt-2">Título</label>
+      <input type="text" id="title" placeholder="Título " class="mt-2 p-2 border border-gray-300 rounded w-full" />
+
+      <label for="email" class="mt-2">Correo Electrónico</label>
+      <input type="email" id="email" placeholder="Correo Electrónico" class="mt-2 p-2 border border-gray-300 rounded w-full" />
+
+      <label for="phone" class="mt-2">Teléfono</label>
+      <input type="text" id="phone" placeholder="Teléfono" class="mt-2 p-2 border border-gray-300 rounded w-full" />
+
+      <label for="birth-date" class="mt-2">Fecha de Nacimiento</label>
+      <input type="date" id="birthDate" placeholder="Fecha de Nacimiento" class="mt-2 p-2 border border-gray-300 rounded w-full" />
+      
+      <label for="linkedin" class="mt-2">Enlace de LinkedIn:</label>
+      <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/tu-perfil" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    </section>
+
+<section class="mb-6 skills">
+  <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Habilidades</h2>
+
+  <div id="skillsContainer" class="mt-4">
+    <label class="mt-2">Nombre de la habilidad:</label>
+    <div class="software-entry">
+      <input type="text" name="skills[]" placeholder="Nombre de su habilidad" required class="w-full p-2 border border-gray-300 rounded mb-2 mt-2">
+      <select name="softwareLevel[]" required class="mb-2 mt-2">
+        <option value="">Puntuacion</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Botón que agregará otra entrada -->
+  <button id="BtnAddSkill" type="button" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">
+    + Agregar otra experiencia
+  </button>
+</section>
+
+
+    <section class="mb-6 softwareContainer">
+        <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Software</h2>
+
+      <div id="softwareContainer" class="mt-4">
+            <label class="mt-2">Nombre del Software:</label>
+            <div class="software-entry">
+            <input type="text" name="software[]" placeholder="Nombre de su Software" required  class="w-full p-2 border border-gray-300 rounded mb-2 mt-2">
+            <select name="softwareLevel[]" required>
+            <option value="">Puntuacion</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+            </div>
+    </div>
+        <button  id="BtnAddSoftware" type="button" onclick="agregarTextarea()" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">+ Agregar otra experiencia</button>
+
+    </section>
+
+
+
+
+     <section class="mb-6 language-section">
+        <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Idiomas</h2>
+     
+      <div id="languageContainer" class="mt-4">
+            <label class="mt-2">Idiomas que dominas:</label>
+            <div class="language-entry">
+            <input type="text" name="language[]" placeholder="Idioma" required class="w-full p-2 border border-gray-300 rounded mb-2 mt-2">
+            <select name="languageLevel[]" required>
+            <option value="">Puntuacion</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+            </div>
+    </div>
+        <button  id="BtnAddLanguage" type="button" onclick="agregarTextarea()" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">+ Agregar otra experiencia</button>
+    </section>
+
+
+
+
+ <section class="mb-6 professional-experience">
+  <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Experiencia Profesional</h2>
+
+  <div id="experienceContainer" class="mt-4">
+    <fieldset class="mb-4">
+      <textarea name="experience[]" class="w-full p-2 border rounded" rows="4" placeholder="Escriba su experiencia profesional" required></textarea>
+    </fieldset>
+  </div>
+
+  <button id="BtnAddExperience" type="button" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">+ Agregar otra experiencia</button>
+</section>
+
+
+
+
+<section class="mb-6">
+  <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Experiencia Laboral</h2>
+
+  <div id="workExperience">
+    <label for="company-name" class="mt-2">Nombre de la empresa:</label>
+    <input type="text" id="company-name" name="company[]" placeholder="Nombre de la empresa" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="job-start" class="mt-2">Fecha de inicio:</label>
+    <input type="date" id="job-start" name="startDate[]" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="job-end" class="mt-2">Fecha de finalización:</label>
+    <input type="date" id="job-end" name="endDate[]" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+  </div>
+
+  <button id="BtnAddWorkExperience" type="button" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">
+    + Agregar otra experiencia
+  </button>
+</section>
+
+
+<section class="mb-6 education-section">
+  <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Educación</h2>
+
+  <div id="educationContainer">
+    <label for="education-name" class="mt-2">Nombre de la carrera:</label>
+    <input type="text" id="education-name" name="education-name" placeholder="Nombre de su carrera" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="education-start" class="mt-2">Fecha de inicio:</label>
+    <input type="date" id="education-start" name="education-start" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="education-end" class="mt-2">Fecha de finalización:</label>
+    <input type="date" id="education-end" name="education-end" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+  </div>
+
+  <button type="button" id="BtnAddEducation" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">+ Agregar otra experiencia</button>
+</section>
+
+<section class="mb-6 certification-section">
+  <h2 class="text-xl font-semibold text-gray-700 border-b pb-2">Certificaciones</h2>
+
+  <div id="certificationContainer">
+    <label for="certification-name" class="mt-2">Nombre de la certificación:</label>
+    <input type="text" id="certification-name" name="certification-name" placeholder="Nombre de su certificación" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="certification-start" class="mt-2">Fecha de inicio:</label>
+    <input type="date" id="certification-start" name="certification-start" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+
+    <label for="certification-end" class="mt-2">Fecha de finalización:</label>
+    <input type="date" id="certification-end" name="certification-end" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+  </div>
+
+  <button type="button" id="BtnAddCertification" class="bg-[#00cc66] text-white px-4 py-2 rounded mt-2 experience">+ Agregar otra certificación</button>
+</section>
+
+  <button type="button" id="BtnCvGenerate" class="bg-[#2b4c7e] text-white px-4 py-2 rounded mt-2 experience">Generar Curriculum</button>
+  </div>
+  </main>
+
+
+
+<section >
+
+  <div id="cv-section" class="max-w-7xl mx-auto bg-white p-8 mt-10 rounded-lg container">
+
+    <div id="cv-header" >
+ <h2 id="nameOutput" class="text-center text-black text-4xl">Nombre: <span class="font-medium" id="nameSpan"></span></h2>
+        <h4 id="titleOutput" class="text-center text-black text-2xl">Título: <span class="font-medium"></span></h4>
+
+</div>
+    <div class="flex flex-col md:flex-row gap-6 ">
+
+ <div class="flex-1 max-w-[35%] bg-[#66afd9] p-4 rounded">
+       
+        <!-- Imagen -->
+        <div class="my-4 flex justify-center">
+          <div id="imageOutput" class="text-center">
+            <h4 class="text-xl">Imagen de Perfil</h4>
+          </div>
+        </div>
+
+
+        
+<div class="container my-4 d-flex flex-column align-items-center gap-4">
+  <h2 class="text-xl">Información Personal</h2>
+
+  <div id="personal-information" class="bg-light p-4 rounded " style="max-width: 25rem;">
+    <p ><strong>Email:</strong> <span id="emailSpan"></span></p>
+    <hr class="my-2">
+    <p><strong>Teléfono:</strong> <span id="phoneSpan"></span></p>
+    <hr class="my-2">
+    <p><strong>Fecha de nacimiento:</strong> <span id="birthDateSpan"></span></p>
+    <hr class="my-2">
+    <p><strong>LinkedIn:</strong> <span id="linkedinSpan"></span></p>
+  </div>
+</div>
+
+
+<div class="container my-4 d-flex flex-column align-items-center gap-4">
+  <h2 class="text-xl">Habilidades</h2>
+
+  <div id="personal-information" class="bg-light p-4 rounded" style="max-width: 25rem;">
+  <ul id="skillsOutput" class="list-group list-group-flush mt-2"></ul>
+</div>
+
+</div>
+
+
+<div class="container my-4 d-flex flex-column align-items-center gap-4">
+  <h2 class="text-xl">Software</h2>
+
+  <div id="personal-information" class="bg-light p-4 rounded" style="max-width: 25rem;">
+  <ul id="softwareOutput" class="list-group list-group-flush mt-2"></ul>
+</div>
+
+</div>
+
+
+
+<div class="container my-4 d-flex flex-column align-items-center gap-4">
+  <h2 class="text-xl">Idiomas</h2>
+
+  <div id="personal-information" class="bg-light p-4 rounded" style="max-width: 25rem;">
+  <ul id="languagesOutput" class="list-group list-group-flush mt-2"></ul>
+</div>
+</div>
+
+  </div>
+
+
+
+
+     <!-- COLUMNA DERECHA: EXPERIENCIA PROFESIONAL -->
+
+      <div class="w-full md:w-[65%] bg-white p-4 shadow-lg rounded">
+        <h2 class="text-center text-2xl font-bold text-[#2b4c7e] mb-6">Experiencia Profesional</h2>
+        <div id="experience" class="bg-gray-100 p-4 rounded w-full overflow-hidden">
+            <div id="experienceList" class="break-words"></div>
+
+            
+      </div>
+
+      <div class="w-full bg-white p-4 shadow-lg rounded">
+        <h2 class="text-center text-2xl font-bold text-[#2b4c7e] mb-6">Experiencia Laboral</h2>
+          <div id="workExperienceOutput" class="bg-gray-100 p-4 rounded break-words whitespace-pre-line">
+        <!-- Aquí se insertarán los párrafos generados -->
+      </div>
+      </div>
+
+
+            <div class="w-full bg-white p-4 shadow-lg rounded">
+        <h2 class="text-center text-2xl font-bold text-[#2b4c7e] mb-6">Educacion</h2>
+          <div id="educationOutput" class="bg-gray-100 p-4 rounded break-words whitespace-pre-line">
+        <!-- Aquí se insertarán los párrafos generados -->
+      </div>
+      </div>
+
+
+
+<div class="w-full bg-white p-4 shadow-lg rounded">
+  <h2 class="text-center text-2xl font-bold text-[#2b4c7e] mb-6">Certificaciones</h2>
+  <div id="certificationOutput" class="bg-gray-100 p-4 rounded break-words whitespace-pre-line">
+    <!-- Aquí se mostrarán las certificaciones -->
+  </div>
+</div>
+
+  </div>
+
+
+      
+  </div>
+
+</section>
+
+
+
+<button id="BtnExportPdf" class="bg-red-600 text-white px-4 py-3 rounded mt-4">
+  Exportar como PDF
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="bg-gray-800 text-white mt-10">
+  <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+    <div class="mb-4 md:mb-0">
+      <h2 class="text-lg font-semibold">ProfessionalCV</h2>
+      <p class="text-sm text-gray-400">Conectando talento con oportunidades desde 2023.</p>
+      <p class="text-sm text-gray-400 mt-2">
+        Desarrollado por 
+        <a href="https://www.linkedin.com/in/emil-echavarria/" class="text-blue-400 hover:underline" target="_blank">Emil Echavarría</a>
+      </p>
+    </div>
+    <div class="flex space-x-4">
+      <a href="#" class="text-gray-400 hover:text-white text-sm">Inicio</a>
+      <a href="#" class="text-gray-400 hover:text-white text-sm">Sobre Nosotros</a>
+      <a href="#" class="text-gray-400 hover:text-white text-sm">Contacto</a>
+      <a href="#" class="text-gray-400 hover:text-white text-sm">Privacidad</a>
+    </div>
+  </div>
+  <div class="flex justify-center space-x-4 py-4 bg-gray-900 text-sm text-gray-400">
+    <a href="https://github.com/EmilEchavarria" target="_blank" class="hover:text-white">GitHub</a>
+    <a href="https://www.linkedin.com/in/emil-echavarria/" target="_blank" class="hover:text-white">LinkedIn</a>
+    <a href="https://www.instagram.com/emilechavarria.c/" target="_blank" class="hover:text-white">Instagram</a>
+    <a href="https://emilechavarria.vercel.app" target="_blank" class="hover:text-white">Portfolio</a>
+  </div>
+  <div class="text-center bg-gray-900 pb-4 text-sm text-gray-500">
+    © 2023–2025 ProfessionalCV. Todos los derechos reservados.
+  </div>
+</footer>
+
+
+ <script src="javascript.js" defer></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+
+
+
+body, h1, h2, h3, h4, h5, h6, input, button, textarea, select {
+  font-family: 'Poppins', sans-serif;
+  color: #9d4444;
+}
+
+.container
+{
+  max-width: 1200px;
+  background-color: rgba(255, 255, 255, 0.485);
+  margin: 0 auto;
+  padding: 20px;
+}
+h1
+{
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+body, #intro {
+  background: linear-gradient(135deg, #f0f4ff, #fde7f9, #e5f0ff, rgb(253, 234, 234), rgb(238, 238, 253), rgb(252, 227, 231)) 
+   ;}
+
+#intro {
+  background: linear-gradient(135deg, #9cc4e4, #e9f2f9,#f6e7f7 ) 
+   ;}
+
+h2
+{
+ font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+#cv-generated
+{
+  font-size: 3rem;
+}
+
+
+h3
+{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+label {
+    font-size: 1.2rem;
+    display: block; /* Asegura que el label ocupe todo el ancho */
+}
+p
+{
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
+input, button, textarea, select {
+  font-size: 12rem;
+  font-weight: 400;
+}
+button {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #94ba65; 
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.experience{
+  font-size: 1.1rem;
+}
+textarea {
+  height: 150px;
+  resize: none;
+  width: 100%;            
+  padding: 12px 16px;     
+  font-size: 16px;        
+  border: 2px solid #ccc; 
+  border-radius: 8px;     
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); 
+  transition: border-color 0.3s ease; 
+  color: #333;
+}
+
+select:focus, input:focus, textarea:focus {
+  outline: none;
+  border-color: #3a89c9; /* Cambia el borde al azul cuando está activo */
+  box-shadow: 0 0 2px #00c9d2;
+}
+button:hover {
+  background-color: #02974d; /* Cambia el color de fondo al pasar el mouse */
+  transform: translateY(-1.5px); /* Efecto de elevación al pasar el mouse */
+}
+#BtnCvGenerate:hover
+{
+  background-color: #0f3088; /* Cambia el color de fondo al pasar el mouse */
+  transform: translateY(-1.5px); /* Efecto de elevación al pasar el mouse */
+}
+
+select {
+  width: 100%;
+  height: 3rem;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid rgba(128, 128, 128, 0.387);
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+
+#cv-header
+{
+  background-color: #00619a;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-height:10rem ;
+}
+
+
+
+
+
+
+
+
+
+
+footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
