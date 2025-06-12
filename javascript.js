@@ -632,7 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Validación del formulario antes de generar el CV
+/* Validación del formulario antes de generar el CV*/
 
 document.getElementById("BtnCvGenerate").addEventListener("click", function () {
   const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
@@ -650,4 +650,3 @@ document.getElementById("BtnCvGenerate").addEventListener("click", function () {
     // Generar el CV aquí
   }
 });
-*/
