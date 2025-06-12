@@ -367,9 +367,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <img src="${imageURL}" alt="Imagen de perfil"
           class="rounded-circle shadow"
           style="width: 350px; 
-          height: 300px; 
+          height: 350px; 
           object-fit: cover;
-          border-radius: 50%;
+          border-radius: 3%;
           " />
       `;
     } else {
@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const phoneSpan = document.getElementById("phoneSpan");
 
     if (phone.trim() !== "") {
-      phoneSpan.innerHTML = `<a href="tel:${phone}" class="text-blue-600 underline">${phone}</a>`;
+      phoneSpan.innerHTML = `<a href="tel:${phone}" class="text-blue-600 underline  text-[1.3rem">${phone}</a>`;
     } else {
       phoneSpan.textContent = ""; // limpia si está vacío
     }
@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const linkedinSpan = document.getElementById("linkedinSpan");
 
     if (linkedin.trim() !== "") {
-      linkedinSpan.innerHTML = `<a href="${linkedin}" target="_blank" class="text-blue-600 underline">${linkedin}</a>`;
+      linkedinSpan.innerHTML = `<a href="${linkedin}" target="_blank" class="text-blue-600 underline  text-[1.3rem">${linkedin}</a>`;
     } else {
       linkedinSpan.textContent = ""; 
     }
@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const skillText = `${skill.value} (${skillLevel}/5)`; // <-- Aquí el cambio
 
         const skillItem = document.createElement("li");
-        skillItem.className = "list-group-item px-0";  // clase Bootstrap para lista sin padding lateral
+        skillItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
         skillItem.textContent = skillText;
 
         skillsOutput.appendChild(skillItem);
@@ -495,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const softText = `${soft.value} (${softLevel}/5)`; // <-- Aquí el cambio
 
         const softItem = document.createElement("li");
-        softItem.className = "list-group-item px-0";  // clase Bootstrap para lista sin padding lateral
+        softItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
         softItem.textContent = softText;
 
         softwareOutput.appendChild(softItem);
@@ -519,7 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const langText = `${lang.value} (${langLevel}/5)`; // <-- Aquí el cambio
 
         const langItem = document.createElement("li");
-        langItem.className = "list-group-item px-0";  // clase Bootstrap para lista sin padding lateral
+        langItem.className = "list-group-item px-0  text-[1.3rem";  // clase Bootstrap para lista sin padding lateral
         langItem.textContent = langText;
 
         languagesOutput.appendChild(langItem);
@@ -539,7 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
     experiences.forEach(exp => {
       if (exp.value.trim() !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2"; // Estilo Bootstrap opcional
+        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
         p.textContent = exp.value;
         experienceList.appendChild(p);
       }
@@ -567,7 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (company !== "" && start !== "" && end !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2";
+        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
         p.style.wordBreak = "break-word";
         p.textContent = ` ${company} (Desde: ${start} hasta: ${end})`;
         outputContainer.appendChild(p);
@@ -594,7 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (career !== "" && start !== "" && end !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2";
+        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
         p.textContent = ` ${career} (Desde: ${start} hasta: ${end})`;
         output.appendChild(p);
       }
@@ -624,7 +624,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (name !== "" && start !== "" && end !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2";
+        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
         p.textContent = ` ${name} (Desde: ${start} hasta: ${end})`;
         output.appendChild(p);
       }
@@ -632,9 +632,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/* Validación del formulario antes de generar el CV
 
+document.getElementById("BtnCvGenerate").addEventListener("click", function () {
+  const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+  let formIsValid = true;
 
+  inputs.forEach(input => {
+    if (!input.checkValidity()) {
+      input.reportValidity(); // muestra el mensaje de error del navegador
+      formIsValid = false;
+      return; // se detiene en el primer campo inválido
+    }
+  });
 
-
-
-
+  if (formIsValid) {
+    // Generar el CV aquí
+  }
+});
+*/

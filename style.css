@@ -9,7 +9,6 @@ body, h1, h2, h3, h4, h5, h6, input, button, textarea, select {
 .container
 {
   max-width: 1200px;
-  background-color: rgba(255, 255, 255, 0.485);
   margin: 0 auto;
   padding: 20px;
 }
@@ -119,7 +118,7 @@ select {
   background-color: #00619a;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  min-height:10rem ;
+  min-height:11rem ;
 }
 
 
