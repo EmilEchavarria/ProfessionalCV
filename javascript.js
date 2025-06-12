@@ -16,6 +16,8 @@ setTimeout(() => {
 
 // ELEMENTOS DINAMICOS
 
+// ELEMENTOS DINÁMICOS
+
 document.addEventListener("DOMContentLoaded", () => {
   const newSkillButton = document.getElementById("BtnAddSkill");
 
@@ -24,28 +26,35 @@ document.addEventListener("DOMContentLoaded", () => {
       const skillsContainer = document.getElementById("skillsContainer");
 
       if (skillsContainer) {
-        
         const newEntry = document.createElement("div");
         newEntry.className = "software-entry";
 
         const input = document.createElement("input");
         input.type = "text";
-        input.name = "software[]";
+        input.name = "skills[]";  // <- Cambiado de "software[]" a "skills[]"
         input.placeholder = "Nombre de su habilidad";
         input.required = true;
         input.className = "w-full p-2 border border-gray-300 rounded mb-2 mt-2";
 
         const select = document.createElement("select");
-        select.name = "softwareLevel[]";
+        select.name = "skillsLevel[]";  // <- Cambiado de "softwareLevel[]" a "skillsLevel[]"
         select.className = "mb-2 mt-2";
-        select.innerHTML = `
-          <option value="">Puntuacion</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        `;
+
+        const options = [
+          { value: "", text: "Puntuación" },
+          { value: "1", text: "1" },
+          { value: "2", text: "2" },
+          { value: "3", text: "3" },
+          { value: "4", text: "4" },
+          { value: "5", text: "5" },
+        ];
+
+        for (const optData of options) {
+          const option = document.createElement("option");
+          option.value = optData.value;
+          option.textContent = optData.text;
+          select.appendChild(option);
+        }
 
         newEntry.appendChild(input);
         newEntry.appendChild(select);
@@ -56,47 +65,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
-
   const NewSoftwareButton = document.getElementById("BtnAddSoftware");
-  NewSoftwareButton.addEventListener("click", () => {
 
+  NewSoftwareButton.addEventListener("click", () => {
     const softwareContainer = document.getElementById("softwareContainer");
 
+    const newEntry = document.createElement("div");
+    newEntry.className = "software-entry";
 
-const newEntry = document.createElement("div");
-newEntry.className = "software-entry";
-
-const input =document.createElement("input");
-input.type = "text";
+    const input = document.createElement("input");
+    input.type = "text";
     input.name = "software[]";
     input.placeholder = "Nombre del software";
     input.required = true;
     input.className = "w-full p-2 border border-gray-300 rounded mb-2 mt-2";
 
-
     const select = document.createElement("select");
     select.name = "softwareLevel[]";
     select.className = "mb-2 mt-2";
-    select.innerHTML = `
-      <option value="">Puntuacion</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    `;
+
+    const options = [
+      { value: "", text: "Puntuación" },
+      { value: "1", text: "1" },
+      { value: "2", text: "2" },
+      { value: "3", text: "3" },
+      { value: "4", text: "4" },
+      { value: "5", text: "5" }
+    ];
+
+    options.forEach(optData => {
+      const option = document.createElement("option");
+      option.value = optData.value;
+      option.textContent = optData.text;
+      select.appendChild(option);
+    });
 
     newEntry.appendChild(input);
-    newEntry.appendChild(select); 
+    newEntry.appendChild(select);
     softwareContainer.appendChild(newEntry);
-  }); 
+  });
 });
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
   const newLanguageButton = document.getElementById("BtnAddLanguage");
 
   if (newLanguageButton) {
@@ -104,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const languagesContainer = document.getElementById("languageContainer");
 
       if (languagesContainer) {
-        
         const newEntry = document.createElement("div");
         newEntry.className = "language-entry";
 
@@ -118,18 +130,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const select = document.createElement("select");
         select.name = "languageLevel[]";
         select.className = "mb-2 mt-2";
-        select.innerHTML = `
-          <option value="">Puntuacion</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        `;
+
+        const options = [
+          { value: "", text: "Puntuación" },
+          { value: "1", text: "1" },
+          { value: "2", text: "2" },
+          { value: "3", text: "3" },
+          { value: "4", text: "4" },
+          { value: "5", text: "5" }
+        ];
+
+        options.forEach(optData => {
+          const option = document.createElement("option");
+          option.value = optData.value;
+          option.textContent = optData.text;
+          select.appendChild(option);
+        });
 
         newEntry.appendChild(input);
         newEntry.appendChild(select);
-
         languagesContainer.appendChild(newEntry);
       }
     });
@@ -354,29 +373,33 @@ document.addEventListener("DOMContentLoaded", () => {
     certificationContainer.appendChild(inputEnd);
   });
 });
-
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const fileInput = document.getElementById("profileImage");
     const imageOutput = document.getElementById("imageOutput");
 
+    // Limpiar cualquier imagen previa
+    while (imageOutput.firstChild) {
+      imageOutput.removeChild(imageOutput.firstChild);
+    }
+
     if (fileInput.files && fileInput.files[0]) {
       const imageURL = URL.createObjectURL(fileInput.files[0]);
 
-      imageOutput.innerHTML = `
-        <img src="${imageURL}" alt="Imagen de perfil"
-          class="rounded-circle shadow"
-          style="width: 350px; 
-          height: 350px; 
-          object-fit: cover;
-          border-radius: 3%;
-          " />
-      `;
-    } else {
-      imageOutput.innerHTML = "";
+      const img = document.createElement("img");
+      img.src = imageURL;
+      img.alt = "Imagen de perfil";
+      img.className = "rounded-circle shadow";
+      img.style.width = "350px";
+      img.style.height = "350px";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "3%";
+
+      imageOutput.appendChild(img);
     }
   });
 });
+
 
 
 
@@ -403,10 +426,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value;
     const emailSpan = document.getElementById("emailSpan");
 
+    // Limpiar contenido anterior
+    while (emailSpan.firstChild) {
+      emailSpan.removeChild(emailSpan.firstChild);
+    }
+
     if (email.trim() !== "") {
-      emailSpan.innerHTML = `<a href="mailto:${email}" class="text-blue-600 underline">${email}</a>`;
-    } else {
-      emailSpan.textContent = ""; // limpia si está vacío
+      const emailLink = document.createElement("a");
+      emailLink.href = `mailto:${email}`;
+      emailLink.textContent = email;
+      emailLink.className = "text-blue-600 underline";
+      emailSpan.appendChild(emailLink);
     }
   });
 });
@@ -418,13 +448,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const phone = document.getElementById("phone").value;
     const phoneSpan = document.getElementById("phoneSpan");
 
+    // Limpiar contenido anterior
+    while (phoneSpan.firstChild) {
+      phoneSpan.removeChild(phoneSpan.firstChild);
+    }
+
     if (phone.trim() !== "") {
-      phoneSpan.innerHTML = `<a href="tel:${phone}" class="text-blue-600 underline  text-[1.3rem">${phone}</a>`;
-    } else {
-      phoneSpan.textContent = ""; // limpia si está vacío
+      const phoneLink = document.createElement("a");
+      phoneLink.href = `tel:${phone}`;
+      phoneLink.textContent = phone;
+      phoneLink.className = "text-blue-600 underline text-[1.3rem]";
+      phoneSpan.appendChild(phoneLink);
     }
   });
 });
+
 
 // fecha de nacimiento
 document.addEventListener("DOMContentLoaded", () => {
@@ -441,37 +479,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// generar linkedin
+// Generar LinkedIn
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const linkedin = document.getElementById("linkedin").value;
     const linkedinSpan = document.getElementById("linkedinSpan");
 
+    // Limpiar contenido anterior
+    while (linkedinSpan.firstChild) {
+      linkedinSpan.removeChild(linkedinSpan.firstChild);
+    }
+
     if (linkedin.trim() !== "") {
-      linkedinSpan.innerHTML = `<a href="${linkedin}" target="_blank" class="text-blue-600 underline  text-[1.3rem">${linkedin}</a>`;
-    } else {
-      linkedinSpan.textContent = ""; 
+      const linkedinLink = document.createElement("a");
+      linkedinLink.href = linkedin;
+      linkedinLink.target = "_blank";
+      linkedinLink.textContent = linkedin;
+      linkedinLink.className = "text-blue-600 underline text-[1.3rem]";
+      linkedinSpan.appendChild(linkedinLink);
     }
   });
 });
-
-
-// generar habilidades
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const skills = document.querySelectorAll('input[name="skills[]"]');
     const skillsOutput = document.getElementById("skillsOutput");
 
-    skillsOutput.innerHTML = ""; // limpia la lista antes de agregar
+    while (skillsOutput.firstChild) {
+      skillsOutput.removeChild(skillsOutput.firstChild);
+    }
 
     skills.forEach(skill => {
+      const parent = skill.parentElement;
+      const skillLevelSelect = parent.querySelector('select[name="skillsLevel[]"]');
+
       if (skill.value.trim() !== "") {
-        const skillLevel = skill.nextElementSibling.value || "0";
-        const skillText = `${skill.value} (${skillLevel}/5)`; // <-- Aquí el cambio
+        const skillLevel = skillLevelSelect ? skillLevelSelect.value : "0";
+        const skillText = `${skill.value} (${skillLevel}/5)`;
 
         const skillItem = document.createElement("li");
-        skillItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
+        skillItem.className = "list-group-item px-0 text-[1.3rem] text-white";
         skillItem.textContent = skillText;
 
         skillsOutput.appendChild(skillItem);
@@ -481,21 +529,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// generar software
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const software = document.querySelectorAll('input[name="software[]"]');
     const softwareOutput = document.getElementById("softwareOutput");
 
-    softwareOutput.innerHTML = ""; // limpia la lista antes de agregar
+    while (softwareOutput.firstChild) {
+      softwareOutput.removeChild(softwareOutput.firstChild);
+    }
 
     software.forEach(soft => {
       if (soft.value.trim() !== "") {
         const softLevel = soft.nextElementSibling.value || "0";
-        const softText = `${soft.value} (${softLevel}/5)`; // <-- Aquí el cambio
+        const softText = `${soft.value} (${softLevel}/5)`;
 
         const softItem = document.createElement("li");
-        softItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
+        softItem.className = "list-group-item px-0 text-[1.3rem] text-white"; // corregido
         softItem.textContent = softText;
 
         softwareOutput.appendChild(softItem);
@@ -504,22 +553,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-// generar idiomas
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const languages = document.querySelectorAll('input[name="language[]"]');
     const languagesOutput = document.getElementById("languagesOutput");
 
-    languagesOutput.innerHTML = ""; // limpia la lista antes de agregar
+    while (languagesOutput.firstChild) {
+      languagesOutput.removeChild(languagesOutput.firstChild);
+    }
 
     languages.forEach(lang => {
       if (lang.value.trim() !== "") {
         const langLevel = lang.nextElementSibling.value || "0";
-        const langText = `${lang.value} (${langLevel}/5)`; // <-- Aquí el cambio
+        const langText = `${lang.value} (${langLevel}/5)`;
 
         const langItem = document.createElement("li");
-        langItem.className = "list-group-item px-0  text-[1.3rem text-white";  // clase Bootstrap para lista sin padding lateral
+        langItem.className = "list-group-item px-0 text-[1.3rem] text-white";  // corregido
         langItem.textContent = langText;
 
         languagesOutput.appendChild(langItem);
@@ -528,28 +577,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//generar experiencia
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
     const experiences = document.querySelectorAll('textarea[name="experience[]"]');
     const experienceList = document.getElementById("experienceList");
 
-    experienceList.innerHTML = ""; // Limpia el contenido antes de agregar
+    while (experienceList.firstChild) {
+      experienceList.removeChild(experienceList.firstChild);
+    }
 
     experiences.forEach(exp => {
       if (exp.value.trim() !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
+        p.className = "mb-2 text-[1.3rem]";
         p.textContent = exp.value;
         experienceList.appendChild(p);
       }
     });
   });
 });
-
-
-
-// generar experiencia laboral
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("BtnCvGenerate").addEventListener("click", () => {
@@ -558,7 +604,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const endDates = document.querySelectorAll('input[name="endDate[]"]');
     const outputContainer = document.getElementById("workExperienceOutput");
 
-    outputContainer.innerHTML = ""; // Limpiar antes de generar
+    while (outputContainer.firstChild) {
+      outputContainer.removeChild(outputContainer.firstChild);
+    }
 
     for (let i = 0; i < companies.length; i++) {
       const company = companies[i].value.trim();
@@ -567,7 +615,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (company !== "" && start !== "" && end !== "") {
         const p = document.createElement("p");
-        p.className = "mb-2 text-[1.3rem]"; // Estilo Bootstrap opcional
+        p.className = "mb-2 text-[1.3rem]";
         p.style.wordBreak = "break-word";
         p.textContent = ` ${company} (Desde: ${start} hasta: ${end})`;
         outputContainer.appendChild(p);
@@ -585,7 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const endDates = document.querySelectorAll('input[name="education-end"]');
     const output = document.getElementById("educationOutput");
 
-    output.innerHTML = ""; // Limpiar antes de mostrar resultados
+    output.HTML = ""; // Limpiar antes de mostrar resultados
 
     for (let i = 0; i < careers.length; i++) {
       const career = careers[i].value.trim();
@@ -615,7 +663,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ends = document.querySelectorAll('input[name="certification-end"]');
     const output = document.getElementById("certificationOutput");
 
-    output.innerHTML = ""; // Limpiar contenido previo
+    output.HTML = ""; // Limpiar contenido previo
 
     for (let i = 0; i < names.length; i++) {
       const name = names[i].value.trim();
